@@ -52,6 +52,15 @@ module.exports = {
                         loader: 'file-loader',
                     }
                 ]
+            },
+
+            {
+                test: /\.pug$/,
+                use: [
+                    {
+                        loader: 'pug-loader',
+                    }
+                ]
             }
         ]
     },
@@ -61,7 +70,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.pug'
         })
     ]
 }
