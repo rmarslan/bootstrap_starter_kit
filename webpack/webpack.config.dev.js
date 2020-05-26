@@ -1,6 +1,22 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
+function generateHtmlPlugins (templateDir) {
+    const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
+    return templateFiles.map(item => {
+            const parts = item.split('.')
+            const name = parts[0]
+            const extension = parts[1]
+            return new HtmlWebpackPlugin({
+            filename: `${name}.html`,
+            template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`)
+        })
+    })
+}
+
+const htmlPlugins = generateHtmlPlugins('../src/templates/pages');
 
 module.exports = {
     entry: {
@@ -69,8 +85,6 @@ module.exports = {
 
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/index.pug'
-        })
     ]
+    .concat(htmlPlugins)
 }
