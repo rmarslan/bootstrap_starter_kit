@@ -98,7 +98,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jquery: 'jquery',
-            'windows.jQuery': 'jquery'
+            'windows.jQuery': 'jquery',
+            Popper: ['popper.js', 'default']
         })
     ]
     .concat(htmlPlugins)
