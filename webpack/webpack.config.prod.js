@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 function generateHtmlPlugins (templateDir) {
     const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
@@ -89,6 +90,11 @@ module.exports = {
                 ]
             }
         ]
+    },
+
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()]
     },
 
     plugins: [
