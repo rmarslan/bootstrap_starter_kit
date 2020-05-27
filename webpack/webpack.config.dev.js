@@ -31,7 +31,8 @@ module.exports = {
 
     devServer: {
         contentBase: './dist',
-        hot: true
+        hot: true,
+        index: 'home.html'
     },
 
     mode: 'development',
@@ -58,12 +59,12 @@ module.exports = {
             },
 
             {
-                test: /\.(png|svg|jpeg|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    }
-                ]
+                test: /\.(png|svg|jpeg|jpg|gif)$/i,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'images',
+                    esModule: false
+                },
             },
 
             {
@@ -71,6 +72,9 @@ module.exports = {
                 use: [
                     {
                         loader: 'file-loader',
+                        options: {
+                            outputPath: 'fonts',
+                        },
                     }
                 ]
             },
